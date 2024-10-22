@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+
+        section {
+            background-color: lightgray;
+            width: 350px;
+            margin: auto;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        div#contador {
+            background-color: lightcoral;
+            width: 90%;
+            margin: auto;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+    </style>
+
+    <title>Contador</title>
+</head>
+<body>
+    <section>
+        <h1>Função Contador</h1>
+        <div id="contador">
+            <p>
+                <label for="valor">Início: </label>
+                <input type="number" name="valorInicio" id="valorInicio">
+            </p>
+            <p>
+                <label for="num">Fim: </label>
+                <input type="number" name="valorFim" id="valorFim">
+            </p>
+            <p>
+                <input type="button" value="Começar" id="bt1" onclick="contador()">
+            </p>
+        </div>
+        <div>
+            <p id="res"></p>
+        </div>
+    </section>
+
+    <script>
+
+        function contador() {
+
+            var inicio = document.getElementById('valorInicio')
+            var fim = document.getElementById('valorFim')
+            var res = document.getElementById('res')
+            var botaoComecar = document.getElementById('bt1')
+
+            var num1 = Number(inicio.value) // Armazena o valor digitado na caixa início
+            var num2 = Number(fim.value) // Armazena o valor digitado na caixa fim
+
+            for ( var i = num1; i <= num2; i++) {
+                res.innerHTML += `Número ${i} <br>`
+            }
+
+            inicio.disabled = true
+            fim.disabled = true
+            botaoComecar.disabled = true
+
+            var botaoLimpar = document.createElement('button')
+            var div = document.getElementById('contador')
+            botaoLimpar.textContent = 'Limpar'
+            div.appendChild(botaoLimpar)
+            botaoLimpar.setAttribute('id', 'bt2')
+            botaoLimpar.addEventListener('click', limpar)
+        }
+        
+        function limpar() {
+
+            var inicio = document.getElementById('valorInicio')
+            var fim = document.getElementById('valorFim')
+            var res = document.getElementById('res')
+            var botaoComecar = document.getElementById('bt1')
+
+            inicio.value = ''
+            fim.value = ''
+            res.innerHTML = ''
+
+            inicio.disabled = false
+            inicio.focus()
+            fim.disabled = false
+            botaoComecar.disabled = false
+
+            var botaoLimpar = document.getElementById('bt2')
+            botaoLimpar.parentNode.removeChild(botaoLimpar)
+
+        }
+
+    </script>
+    
+</body>
+</html>
