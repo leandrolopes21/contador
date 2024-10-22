@@ -23,6 +23,16 @@
             border-radius: 10px;
         }
 
+        input[type=button] {
+            width: 80px;
+            border-radius: 3px;
+        }
+
+        button {
+            width: 80px;
+            border-radius: 3px;
+        }
+
     </style>
 
     <title>Contador</title>
@@ -32,12 +42,16 @@
         <h1>Função Contador</h1>
         <div id="contador">
             <p>
-                <label for="valor">Início: </label>
-                <input type="number" name="valorInicio" id="valorInicio">
+                <label for="valorInicio">Início: </label>
+                <input type="number" name="valorInicio" id="valorInicio" required>
             </p>
             <p>
-                <label for="num">Fim: </label>
-                <input type="number" name="valorFim" id="valorFim">
+                <label for="valorFim">Fim: </label>
+                <input type="number" name="valorFim" id="valorFim" maxlength="1000" required>
+            </p>
+            <p>
+                <label for="passo">Passo: </label>
+                <input type="number" name="passo" id="passo" maxlength="10" required>
             </p>
             <p>
                 <input type="button" value="Começar" id="bt1" onclick="contador()">
@@ -54,18 +68,21 @@
 
             var inicio = document.getElementById('valorInicio')
             var fim = document.getElementById('valorFim')
+            var passo = document.getElementById('passo')
             var res = document.getElementById('res')
             var botaoComecar = document.getElementById('bt1')
 
             var num1 = Number(inicio.value) // Armazena o valor digitado na caixa início
             var num2 = Number(fim.value) // Armazena o valor digitado na caixa fim
+            var num3 = Number(passo.value) // Armazena o valor digitado na caixa passo
 
-            for ( var i = num1; i <= num2; i++) {
+            for ( var i = num1; i <= num2; i += num3) {
                 res.innerHTML += `Número ${i} <br>`
             }
 
             inicio.disabled = true
             fim.disabled = true
+            passo.disabled = true
             botaoComecar.disabled = true
 
             var botaoLimpar = document.createElement('button')
@@ -85,11 +102,13 @@
 
             inicio.value = ''
             fim.value = ''
+            passo.value = ''
             res.innerHTML = ''
 
             inicio.disabled = false
             inicio.focus()
             fim.disabled = false
+            passo.disabled = false
             botaoComecar.disabled = false
 
             var botaoLimpar = document.getElementById('bt2')
