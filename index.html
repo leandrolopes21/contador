@@ -54,7 +54,7 @@
                 <input type="number" name="passo" id="passo" maxlength="10" required>
             </p>
             <p>
-                <input type="button" value="Começar" id="bt1" onclick="contador()">
+                <input type="button" value="Começar" id="bt1" onclick="verificar()">
             </p>
         </div>
         <div>
@@ -63,6 +63,25 @@
     </section>
 
     <script>
+
+        function verificar() {
+
+            var inicio = document.getElementById('valorInicio').value
+            var fim = document.getElementById('valorFim').value
+            var passo = document.getElementById('passo').value
+            var res = document.getElementById('res')
+            var botaoComecar = document.getElementById('bt1')
+
+            var num1 = Number(inicio.value) // Armazena o valor digitado na caixa início
+            var num2 = Number(fim.value) // Armazena o valor digitado na caixa fim
+            var num3 = Number(passo.value) // Armazena o valor digitado na caixa passo
+
+            if (inicio.trim() == '' || fim.trim() == '' || passo.trim() == '') {
+                res.innerHTML = 'Dados inválidos'
+            } else {
+                contador()
+            }
+        }
 
         function contador() {
 
