@@ -62,6 +62,8 @@
         </div>
     </section>
 
+    <!-- Arquivo atualizado, com todas os recursos em pleno funcionamento -->
+
     <script>
 
         function verificar() {
@@ -80,23 +82,13 @@
                 
                 res.innerHTML = 'Dados inválidos'
 
-                var botaoLimpar = document.createElement('button')
-                var div = document.getElementById('contador')
-                botaoLimpar.textContent = 'Limpar'
-                div.appendChild(botaoLimpar)
-                botaoLimpar.setAttribute('id', 'bt2')
-                botaoLimpar.addEventListener('click', limpar)
+                DesabilitarfuncaoEcriarBotao()
 
             } else if (passo <= 0)  {
                 
                 res.innerHTML = 'Impossível calcular, digite valores positivos maiores que 0!'
 
-                var botaoLimpar = document.createElement('button')
-                var div = document.getElementById('contador')
-                botaoLimpar.textContent = 'Limpar'
-                div.appendChild(botaoLimpar)
-                botaoLimpar.setAttribute('id', 'bt2')
-                botaoLimpar.addEventListener('click', limpar)
+                DesabilitarfuncaoEcriarBotao()
 
             } else {
 
@@ -105,6 +97,27 @@
             }
         }
 
+        function DesabilitarfuncaoEcriarBotao() {
+
+            var inicio = document.getElementById('valorInicio')
+            var fim = document.getElementById('valorFim')
+            var passo = document.getElementById('passo')
+            var botaoComecar = document.getElementById('bt1')
+
+            inicio.disabled = true
+            fim.disabled = true
+            passo.disabled = true
+            botaoComecar.disabled = true
+
+            var botaoLimpar = document.createElement('button')
+            var div = document.getElementById('contador')
+            botaoLimpar.textContent = 'Limpar'
+            div.appendChild(botaoLimpar)
+            botaoLimpar.setAttribute('id', 'bt2')
+            botaoLimpar.addEventListener('click', limpar)
+
+        }
+        
         function contador() {
 
             var inicio = document.getElementById('valorInicio')
@@ -122,17 +135,7 @@
                 res.innerHTML += `Número ${i} <br>`
                 }
 
-                inicio.disabled = true
-                fim.disabled = true
-                passo.disabled = true
-                botaoComecar.disabled = true
-
-                var botaoLimpar = document.createElement('button')
-                var div = document.getElementById('contador')
-                botaoLimpar.textContent = 'Limpar'
-                div.appendChild(botaoLimpar)
-                botaoLimpar.setAttribute('id', 'bt2')
-                botaoLimpar.addEventListener('click', limpar)
+                DesabilitarfuncaoEcriarBotao()
 
             } else {
 
@@ -140,17 +143,7 @@
                 res.innerHTML += `Número ${i} <br>`
                 }
 
-                inicio.disabled = true
-                fim.disabled = true
-                passo.disabled = true
-                botaoComecar.disabled = true
-
-                var botaoLimpar = document.createElement('button')
-                var div = document.getElementById('contador')
-                botaoLimpar.textContent = 'Limpar'
-                div.appendChild(botaoLimpar)
-                botaoLimpar.setAttribute('id', 'bt2')
-                botaoLimpar.addEventListener('click', limpar)
+                DesabilitarfuncaoEcriarBotao()
 
             }
         }
