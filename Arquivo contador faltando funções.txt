@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+
+        section {
+            background-color: lightgray;
+            width: 350px;
+            margin: auto;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        div#contador {
+            background-color: lightcoral;
+            width: 90%;
+            margin: auto;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        input[type=button] {
+            width: 80px;
+            border-radius: 3px;
+        }
+
+        button {
+            width: 80px;
+            border-radius: 3px;
+        }
+
+    </style>
+
+    <title>Contador</title>
+</head>
+<body>
+    <section>
+        <h1>Função Contador</h1>
+        <div id="contador">
+            <p>
+                <label for="valorInicio">Início: </label>
+                <input type="number" name="valorInicio" id="valorInicio" required>
+            </p>
+            <p>
+                <label for="valorFim">Fim: </label>
+                <input type="number" name="valorFim" id="valorFim" maxlength="1000" required>
+            </p>
+            <p>
+                <label for="passo">Passo: </label>
+                <input type="number" name="passo" id="passo" maxlength="10" required>
+            </p>
+            <p>
+                <input type="button" value="Começar" id="bt1" onclick="verificar()">
+            </p>
+        </div>
+        <div>
+            <p id="res"></p>
+        </div>
+    </section>
+
+    <script>
+
+        function verificar() {
+
+            var inicio = document.getElementById('valorInicio').value
+            var fim = document.getElementById('valorFim').value
+            var passo = document.getElementById('passo').value
+            var res = document.getElementById('res')
+            var botaoComecar = document.getElementById('bt1')
+
+            var num1 = Number(inicio.value) // Armazena o valor digitado na caixa início
+            var num2 = Number(fim.value) // Armazena o valor digitado na caixa fim
+            var num3 = Number(passo.value) // Armazena o valor digitado na caixa passo
+
+            if (inicio.trim() == '' || fim.trim() == '' || passo.trim() == '') {
+                
+                res.innerHTML = 'Dados inválidos'
+
+                var botaoLimpar = document.createElement('button')
+                var div = document.getElementById('contador')
+                botaoLimpar.textContent = 'Limpar'
+                div.appendChild(botaoLimpar)
+                botaoLimpar.setAttribute('id', 'bt2')
+                botaoLimpar.addEventListener('click', limpar)
+
+            } else if (passo <= 0)  {
+                
+                res.innerHTML = 'Impossível calcular, digite valores positivos maiores que 0!'
+
+                var botaoLimpar = document.createElement('button')
+                var div = document.getElementById('contador')
+                botaoLimpar.textContent = 'Limpar'
+                div.appendChild(botaoLimpar)
+                botaoLimpar.setAttribute('id', 'bt2')
+                botaoLimpar.addEventListener('click', limpar)
+
+            } else {
+
+                contador()
+
+            }
+        }
+
+        function contador() {
+
+            var inicio = document.getElementById('valorInicio')
+            var fim = document.getElementById('valorFim')
+            var passo = document.getElementById('passo')
+            var res = document.getElementById('res')
+            var botaoComecar = document.getElementById('bt1')
+
+            var num1 = Number(inicio.value) // Armazena o valor digitado na caixa início
+            var num2 = Number(fim.value) // Armazena o valor digitado na caixa fim
+            var num3 = Number(passo.value) // Armazena o valor digitado na caixa passo
+
+            if (num1 < num2) {
+                for ( var i = num1; i <= num2; i += num3) {
+                res.innerHTML += `Número ${i} <br>`
+                }
+
+                inicio.disabled = true
+                fim.disabled = true
+                passo.disabled = true
+                botaoComecar.disabled = true
+
+                var botaoLimpar = document.createElement('button')
+                var div = document.getElementById('contador')
+                botaoLimpar.textContent = 'Limpar'
+                div.appendChild(botaoLimpar)
+                botaoLimpar.setAttribute('id', 'bt2')
+                botaoLimpar.addEventListener('click', limpar)
+
+            } else {
+
+                for ( var i = num1; i >= num2; i -= num3) {
+                res.innerHTML += `Número ${i} <br>`
+                }
+
+                inicio.disabled = true
+                fim.disabled = true
+                passo.disabled = true
+                botaoComecar.disabled = true
+
+                var botaoLimpar = document.createElement('button')
+                var div = document.getElementById('contador')
+                botaoLimpar.textContent = 'Limpar'
+                div.appendChild(botaoLimpar)
+                botaoLimpar.setAttribute('id', 'bt2')
+                botaoLimpar.addEventListener('click', limpar)
+
+            }
+        }
+        
+        function limpar() {
+
+            var inicio = document.getElementById('valorInicio')
+            var fim = document.getElementById('valorFim')
+            var res = document.getElementById('res')
+            var botaoComecar = document.getElementById('bt1')
+
+            inicio.value = ''
+            fim.value = ''
+            passo.value = ''
+            res.innerHTML = ''
+
+            inicio.disabled = false
+            inicio.focus()
+            fim.disabled = false
+            passo.disabled = false
+            botaoComecar.disabled = false
+
+            var botaoLimpar = document.getElementById('bt2')
+            botaoLimpar.parentNode.removeChild(botaoLimpar)
+
+        }
+
+    </script>
+    
+</body>
+</html>
