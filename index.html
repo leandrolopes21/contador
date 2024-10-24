@@ -77,9 +77,31 @@
             var num3 = Number(passo.value) // Armazena o valor digitado na caixa passo
 
             if (inicio.trim() == '' || fim.trim() == '' || passo.trim() == '') {
+                
                 res.innerHTML = 'Dados inválidos'
+
+                var botaoLimpar = document.createElement('button')
+                var div = document.getElementById('contador')
+                botaoLimpar.textContent = 'Limpar'
+                div.appendChild(botaoLimpar)
+                botaoLimpar.setAttribute('id', 'bt2')
+                botaoLimpar.addEventListener('click', limpar)
+
+            } else if (passo <= 0)  {
+                
+                res.innerHTML = 'Impossível calcular, digite valores positivos maiores que 0!'
+
+                var botaoLimpar = document.createElement('button')
+                var div = document.getElementById('contador')
+                botaoLimpar.textContent = 'Limpar'
+                div.appendChild(botaoLimpar)
+                botaoLimpar.setAttribute('id', 'bt2')
+                botaoLimpar.addEventListener('click', limpar)
+
             } else {
+
                 contador()
+
             }
         }
 
@@ -95,21 +117,42 @@
             var num2 = Number(fim.value) // Armazena o valor digitado na caixa fim
             var num3 = Number(passo.value) // Armazena o valor digitado na caixa passo
 
-            for ( var i = num1; i <= num2; i += num3) {
+            if (num1 < num2) {
+                for ( var i = num1; i <= num2; i += num3) {
                 res.innerHTML += `Número ${i} <br>`
+                }
+
+                inicio.disabled = true
+                fim.disabled = true
+                passo.disabled = true
+                botaoComecar.disabled = true
+
+                var botaoLimpar = document.createElement('button')
+                var div = document.getElementById('contador')
+                botaoLimpar.textContent = 'Limpar'
+                div.appendChild(botaoLimpar)
+                botaoLimpar.setAttribute('id', 'bt2')
+                botaoLimpar.addEventListener('click', limpar)
+
+            } else {
+
+                for ( var i = num1; i >= num2; i -= num3) {
+                res.innerHTML += `Número ${i} <br>`
+                }
+
+                inicio.disabled = true
+                fim.disabled = true
+                passo.disabled = true
+                botaoComecar.disabled = true
+
+                var botaoLimpar = document.createElement('button')
+                var div = document.getElementById('contador')
+                botaoLimpar.textContent = 'Limpar'
+                div.appendChild(botaoLimpar)
+                botaoLimpar.setAttribute('id', 'bt2')
+                botaoLimpar.addEventListener('click', limpar)
+
             }
-
-            inicio.disabled = true
-            fim.disabled = true
-            passo.disabled = true
-            botaoComecar.disabled = true
-
-            var botaoLimpar = document.createElement('button')
-            var div = document.getElementById('contador')
-            botaoLimpar.textContent = 'Limpar'
-            div.appendChild(botaoLimpar)
-            botaoLimpar.setAttribute('id', 'bt2')
-            botaoLimpar.addEventListener('click', limpar)
         }
         
         function limpar() {
