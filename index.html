@@ -6,13 +6,22 @@
     
     <style>
 
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
         section {
             background-color: lightgray;
-            width: 350px;
+            width: 300px;
             margin: auto;
-            text-align: center;
             border: 1px solid black;
             border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 4px;
         }
 
         div#contador {
@@ -21,16 +30,35 @@
             margin: auto;
             border: 1px solid black;
             border-radius: 10px;
+
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: flex-end;
+        }
+
+        p {
+           margin: 4px;
+           padding: 4px;
+        }
+
+        input[type=number] {
+            width: 90px;
         }
 
         input[type=button] {
-            width: 80px;
+            width: 90px;
             border-radius: 3px;
         }
 
         button {
-            width: 80px;
+            width: 90px;
             border-radius: 3px;
+            margin-right: 8px;
+            margin-bottom: 3px;
+        }
+
+        div > p#res {
+            text-align: center;
         }
 
     </style>
@@ -42,15 +70,15 @@
         <h1>Função Contador</h1>
         <div id="contador">
             <p>
-                <label for="valorInicio">Início: </label>
+                <label for="valorInicio">Digite o valor inicial: </label>
                 <input type="number" name="valorInicio" id="valorInicio" required>
             </p>
             <p>
-                <label for="valorFim">Fim: </label>
+                <label for="valorFim">Digite o valor final: </label>
                 <input type="number" name="valorFim" id="valorFim" maxlength="1000" required>
             </p>
             <p>
-                <label for="passo">Passo: </label>
+                <label for="passo">Digite o passo: </label>
                 <input type="number" name="passo" id="passo" maxlength="10" required>
             </p>
             <p>
